@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <title>Boy</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;        
+            }
+
+            body {
+                background: url("sky.png") ;
+                background-color: #1395d1;
+                background-position:50% 25%;
+                background-repeat: repeat-x;
+                background-size:750px 375px;
+            }
+
+            .boy_idle {
+                position: relative;
+                background: url("boy_idle.png");
+                width: 126px;
+                height: 116px;
+                background-size: auto;
+                margin-bottom: 0;
+                left: 725px;
+                top: 400px;
+                animation: boy 1s steps(15) infinite;
+            }
+
+            @keyframes boy {
+                0% {
+                    background-position: 0;
+
+                }
+
+                100% {
+                    background-position: 1900px;
+                }
+            }
+
+
+            .boy_jump {
+                position: relative;
+                background: url("boy_jump.png");
+                width: 120px;
+                height: 116px;
+                margin-bottom: 0;
+                top: 284px;
+                left: 725px;
+                animation: jumpboy 1s steps(15) infinite;
+            }
+
+            @keyframes jumpboy {
+                0% {
+                    background-position: 0;
+
+                }
+
+                100% {
+                    background-position: 1890px;
+                }
+            }
+
+            .boy_walk {
+                position: relative;
+                top: 170px;
+                left: 725px;
+                background: url("boy_walk.png");
+                width: 126px;
+                height: 116px;
+                background-size: auto;
+                margin-bottom: 0;
+                animation: walkboy 1s steps(15) infinite reverse;
+            }
+
+            @keyframes walkboy {
+                0% {
+                    background-position: 0;
+
+                }
+
+                100% {
+                    background-position: 1900px;
+                }
+            }
+
+            .grass{
+                z-index: -1;
+                position: relative;
+                left: 650px;
+                top: 75px;
+            }
+
+            .grass2{
+                position: relative;
+                left: 651px;
+                top: -12px;
+                margin-bottom: 100px;
+            }
+            
+            .button {
+                margin-bottom: 20px;
+                position: relative;
+                left: 375px;
+                bottom: 0px;
+                font-size: large;
+                font-family: 'Press Start 2p';
+                text-align: center;
+                display: inline-block;
+                margin-right: 50px;
+                font-weight: bold;
+                padding: 15px 75px;
+                background-color: #92cc41;
+                color: white;
+                border-radius: 5px;
+                border-color: #3a8012;
+                box-shadow: 0 0.2em #4aa516;
+                cursor: pointer;
+
+            }
+
+            .button2 {
+                background-color: #e76e55;
+                border-color: #641819;
+                box-shadow: 0 0.2em #94331f;
+            }
+
+            .button3 {
+                background-color: #209cee;
+                border-color: #006BB3;
+                box-shadow: 0 0.2em #10486e;
+            }
+
+            .button:active{
+                box-shadow: none;
+                position: relative;
+                bottom: -5px;
+            }
+        </style>
+    </head>
+    <body onload="start()">
+        <div>
+            <div id="boy_idle" class="boy_idle"></div>
+            <div id="boy_jump" class="boy_jump"></div>
+            <div id="boy_walk" class="boy_walk"></div>
+            <div class="grass">
+                <img src="grass.png" alt="Grass" width="200px" height="100px">
+            </div>
+            <div class="grass2">
+                <img src="grass.png" alt="Grass" width="200px" height="80px">
+            </div>
+
+            <button class="button" onclick="walk_boy()">Walk</button>
+            <button class="button button2" onclick="jump_boy()">Jump</button>
+            <button class="button button3" onclick="idle_boy()">Idle</button>
+
+        </div>
+
+        <script>
+            function start() {
+                document.getElementById("boy_jump").style.opacity = "0";
+                document.getElementById("boy_idle").style.opacity = "1";
+                document.getElementById("boy_walk").style.opacity = "0";
+                document.getElementById("boy_jump").style.animationPlayState = "paused";
+                document.getElementById("boy_walk").style.animationPlayState = "paused";
+                document.getElementById("boy_idle").style.animationPlayState = "running";
+            }
+
+            function jump_boy() {
+                var el = document.getElementById('boy_jump');
+                el.style.animation = 'none';
+                el.offsetHeight;
+                el.style.animation = null;
+                document.getElementById("boy_jump").style.opacity = "1";
+                document.getElementById("boy_idle").style.opacity = "0";
+                document.getElementById("boy_walk").style.opacity = "0";
+                document.getElementById("boy_jump").style.animationPlayState = "running";
+                document.getElementById("boy_idle").style.animationPlayState = "paused";
+                document.getElementById("boy_walk").style.animationPlayState = "paused";
+            }
+
+            function walk_boy() {
+                var x = document.getElementById('boy_walk');
+                x.style.animation = 'none';
+                x.offsetHeight;
+                x.style.animation = null;
+                document.getElementById("boy_walk").style.opacity = "1";
+                document.getElementById("boy_idle").style.opacity = "0";
+                document.getElementById("boy_jump").style.opacity = "0";
+                document.getElementById("boy_jump").style.animationPlayState = "paused";
+                document.getElementById("boy_idle").style.animationPlayState = "paused";
+                document.getElementById("boy_walk").style.animationPlayState = "running";
+            }
+
+            function idle_boy() {
+                var x = document.getElementById('boy_idle');
+                x.style.animation = 'none';
+                x.offsetHeight;
+                x.style.animation = null;
+                document.getElementById("boy_idle").style.opacity = "1";
+                document.getElementById("boy_walk").style.opacity = "0";
+                document.getElementById("boy_jump").style.opacity = "0";
+                document.getElementById("boy_jump").style.animationPlayState = "paused";
+                document.getElementById("boy_walk").style.animationPlayState = "paused";
+                document.getElementById("boy_idle").style.animationPlayState = "running";
+                
+            }
+        </script>
+    </body>
+</html>
